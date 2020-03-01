@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
         <title>BoxBuild Tech</title>
        
         
@@ -67,7 +67,32 @@
         </style>
         
     </head>
+    @extends('layouts.app')
     <body>
-@extends('layouts.app')
+        @section('content')
+        <div class="row">
+            @foreach($products as $product)
+            <div class="card col-md" style="width: 14rem ; opacity : 85% !important;">
+
+                <img class="card-img-top" src="{{asset(ltrim($product->image,"C:\laragon\www\Boxbuildtech\public"))}}"alt="Card image cap"> 
+                <div class="card-body">
+                  <h5 class="card-title"> {{$product->name}}</h5>
+                  <h5 class="card-category"> {{$product->category}}</h5>
+                  <h5 class="card-price"> ₱{{$product->price}}</h5>
+                    <a href="#" class="btn btn-primary">Get it</a>
+                </div>
+              </div>
+            @endforeach
+            </div>
+    </body>
+    @endsection
+
+    
+        
+        
+       
+        
+        
+
 
 

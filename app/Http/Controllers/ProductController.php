@@ -41,14 +41,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Product::create(['name' => $request->name,'price' => $request->price,'category' => $request->category, 'quantity' => $request->quantity]);
         
-        $products = Product::all();
+       
+
+        //
+       
+
+        $path = public_path().'/images/products/'. $request->name . ".png";
+        $current = file_get_contents($request->file('fileToUpload'));
+
+        file_put_contents($path,$current);
+        Product::create(['image' => $path,'name' => $request->name,'price' => $request->price,'category' => $request->category, 'quantity' => $request->quantity]);
+
+         $products = Product::all();
 
         return view('dashboardhome',compact('products'));
     }
 
+    public function display(Product $product)
+    {
+         $products = Product::all();
+
+        return view('home',compact('products'));
+    }
 
     /**
      * Display the specified resource.
